@@ -24,4 +24,4 @@ export const SUPABASE_CHAVE = 'sb_publishable_EBWjJruJXua3cwyKCX8cAA_MHWaAbkL';
 export const CONTATO_WHATSAPP = '35997004425';
 
 // Endereço do código no GitHub, pro link do rodapé da página inicial (em branco, o link some)
-export const REPOSITORIO = '';
+export const REPOSITORIO = 'https://github.com/JPFneves/vitrine-zap';
