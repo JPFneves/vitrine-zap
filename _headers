@@ -1,0 +1,12 @@
+# Netlify: cabeçalhos HTTP (valem arrastando a pasta no Netlify Drop ou publicando pelo GitHub)
+
+# O service worker nunca pode ficar preso em cache, senão a versão nova não chega
+/sw.js
+  Cache-Control: no-cache
+
+/manifest.webmanifest
+  Content-Type: application/manifest+json
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin

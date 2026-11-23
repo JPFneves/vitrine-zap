@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Vitrine Zap · Catálogo digital com pedido no WhatsApp e cardápio de mesa por QR code</title>
+  <meta name="description" content="Crie o catálogo online da sua loja em minutos. O cliente escolhe, monta a sacola e o pedido chega pronto no seu WhatsApp. Tem também cardápio de mesa por QR code. Sem comissão por pedido.">
+  <meta name="theme-color" content="#0f7a55">
+  <meta name="color-scheme" content="light dark">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icone.svg" type="image/svg+xml">
+  <link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="Vitrine Zap">
+
+  <!-- Prévia do link (WhatsApp, Instagram, Facebook). A imagem precisa de endereço completo:
+       troque pelo endereço que o Netlify der pro site. -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Vitrine Zap">
+  <meta property="og:title" content="Vitrine Zap · o pedido chega pronto no seu WhatsApp">
+  <meta property="og:description" content="Catálogo digital para empórios, floriculturas, confeitarias e restaurantes. Com cardápio de mesa por QR code.">
+  <meta property="og:image" content="https://vitrine-zap.netlify.app/icons/compartilhar.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="stylesheet" href="css/app.css">
+  <script type="module" src="js/landing.js"></script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Vitrine Zap",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web, Android, iOS",
+      "description": "Catálogo digital com pedido pelo WhatsApp e cardápio de mesa por QR code para pequenos comércios.",
+      "offers": [
+        { "@type": "Offer", "name": "Catálogo no WhatsApp", "price": "89", "priceCurrency": "BRL" },
+        { "@type": "Offer", "name": "Catálogo + Cardápio de mesa", "price": "119", "priceCurrency": "BRL" }
+      ]
+    }
+  </script>
+</head>
+<body>
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="site-topo" id="topo">
+    <div class="container">
+      <a class="logo" href="./" aria-label="Vitrine Zap, página inicial">
+        <img src="icons/icone.svg" alt="" width="34" height="34"> <span>Vitrine <em>Zap</em></span>
+      </a>
+      <nav class="site-nav" aria-label="Seções">
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#recursos">Recursos</a>
+        <a href="#exemplos">Exemplos</a>
+        <a href="#planos">Planos</a>
+        <a href="#duvidas">Dúvidas</a>
+      </nav>
+      <div class="acoes">
+        <button type="button" class="botao botao-pequeno botao-fantasma" data-instalar hidden>Instalar app</button>
+        <a class="botao botao-pequeno botao-fantasma" href="painel/">Entrar</a>
+        <a class="botao botao-pequeno botao-primario" data-contato href="https://nevestecnologia.com" target="_blank" rel="noopener">Quero minha loja</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <!-- ══════════ Herói ══════════ -->
+    <section class="heroi">
+      <div class="container">
+        <div class="heroi-texto">
+          <p class="selo-topo"><span>Novo</span> Cardápio de mesa com QR code</p>
+          <h1>Sua loja no celular do cliente. O pedido, pronto no seu <mark>WhatsApp</mark>.</h1>
+          <p class="heroi-sub">O Vitrine Zap é o catálogo online de empórios, floriculturas, confeitarias e restaurantes.
+            A gente monta a sua loja; o cliente escolhe, monta a sacola e o pedido chega organizado no seu WhatsApp,
+            com total, endereço e forma de pagamento. Mensalidade fixa, sem comissão por venda.</p>
+          <div class="linha-botoes">
+            <a class="botao botao-primario botao-grande" data-contato href="https://nevestecnologia.com" target="_blank" rel="noopener">Quero minha loja</a>
+            <a class="botao botao-grande" href="loja/?l=emporio-da-serra">Ver uma loja de exemplo</a>
+          </div>
+          <ul class="provas">
+            <li>A gente monta pra você</li>
+            <li>Sem comissão por pedido</li>
+            <li>Funciona até sem internet</li>
+          </ul>
+        </div>
+
+        <div class="heroi-visual">
+          <div class="abas-demo" role="tablist" aria-label="Escolha uma loja de exemplo">
+            <button type="button" role="tab" aria-selected="true" data-demo="loja/?l=emporio-da-serra&amp;moldura=1">🧀 Empório</button>
+            <button type="button" role="tab" aria-selected="false" data-demo="loja/?l=floricultura-bela-flor&amp;moldura=1">💐 Floricultura</button>
+            <button type="button" role="tab" aria-selected="false" data-demo="loja/?l=restaurante-tempero-da-serra&amp;mesa=7&amp;moldura=1">🍽️ Mesa 7</button>
+          </div>
+          <div class="celular">
+            <div class="celular-tela">
+              <iframe id="demo-celular" src="loja/?l=emporio-da-serra&amp;moldura=1" title="Demonstração do catálogo no celular" loading="lazy"></iframe>
+            </div>
+          </div>
+          <div class="flutuante um" aria-hidden="true"><span class="icone">🛍️</span><span><b>Pedido novo!</b>Maria · 3 itens · R$ 124,70</span></div>
+          <div class="flutuante dois" aria-hidden="true"><span class="icone">📲</span><span><b>Mesa 7</b>abriu o cardápio pelo QR</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ O problema ══════════ -->
+    <section class="secao alt" aria-labelledby="titulo-problema">
+      <div class="container">
+        <div class="secao-cabeca">
+          <span class="sobretitulo">O problema</span>
+          <h2 id="titulo-problema">Vender pelo WhatsApp não precisa ser bagunça</h2>
+          <p>Quem vende pelo WhatsApp conhece: foto por foto, preço por preço, e o pedido se perde no meio da conversa.</p>
+        </div>
+        <div class="dores">
+          <article class="dor">
+            <span class="balao-cliente">“Tem queijo canastra? Quanto tá?”</span>
+            <h3>A mesma pergunta o dia inteiro</h3>
+            <p>Você para o que está fazendo pra mandar preço, foto e “tem sim” pra cada cliente.</p>
+          </article>
+          <article class="dor">
+            <span class="balao-cliente">“Manda o cardápio aí 🙏”</span>
+            <h3>Cardápio em PDF que ninguém abre</h3>
+            <p>Pesado, desatualizado e sem jeito de marcar o que acabou. Na mesa, o de papel vive engordurado.</p>
+          </article>
+          <article class="dor">
+            <span class="balao-cliente">“Eram 2 ou 3? E o endereço?”</span>
+            <h3>Pedido perdido na conversa</h3>
+            <p>Item que faltou, endereço incompleto, troco esquecido. Cada erro é um cliente chateado.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ Como funciona ══════════ -->
+    <section class="secao" id="como-funciona" aria-labelledby="titulo-como">
+      <div class="container">
+        <div class="secao-cabeca">
+          <span class="sobretitulo">Como funciona</span>
+          <h2 id="titulo-como">Três passos e sua loja está vendendo</h2>
+        </div>
+        <ol class="passos">
+          <li class="passo">
+            <h3>Mande seus produtos</h3>
+            <p>Fotos, preços e o que você vende, pelo WhatsApp. A gente monta o catálogo e o cardápio com a cara da sua loja.</p>
+          </li>
+          <li class="passo">
+            <h3>Divulgue o link e o QR</h3>
+            <p>Na bio do Instagram, no status do WhatsApp, no balcão e nas mesas. As plaquinhas com QR code vão prontas.</p>
+          </li>
+          <li class="passo">
+            <h3>Receba o pedido pronto</h3>
+            <p>Chega no seu WhatsApp com itens, total, entrega e pagamento. Preço mudou ou algo acabou? Você arruma no painel, pelo celular.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ══════════ Os dois modos ══════════ -->
+    <section class="secao alt" aria-labelledby="titulo-modos">
+      <div class="container">
+        <div class="secao-cabeca">
+          <span class="sobretitulo">Dois jeitos de usar</span>
+          <h2 id="titulo-modos">Pra entrega, pra encomenda e pra mesa</h2>
+          <p>O mesmo catálogo serve pro cliente que pede de casa e pro que está sentado na sua mesa.</p>
+        </div>
+        <div class="modos">
+          <article class="modo">
+            <div class="modo-ilustra">
+              <div class="chat" aria-label="Exemplo de pedido chegando no WhatsApp">
+                <div class="chat-topo"><span aria-hidden="true">🧀</span> Empório da Serra</div>
+                <div class="balao" id="balao-pedido">Olá, Empório da Serra! Quero fazer este pedido pelo catálogo:
+
+• 1x Queijo Canastra meia-cura — R$ 89,90
+• 2x Doce de leite pastoso — R$ 37,80
+
+*Total: R$ 133,70*
+
+*Nome:* Maria
+*Entregar em:* Rua das Flores, 120
+*Pagamento:* Pix</div>
+              </div>
+            </div>
+            <h3>Catálogo com pedido no WhatsApp</h3>
+            <p>Pra delivery e encomendas: o cliente escolhe sem pressa e manda o pedido completo.</p>
+            <ul>
+              <li>Sacola com total e taxa de entrega</li>
+              <li>Entrega ou retirada, com endereço</li>
+              <li>Perguntas do seu negócio: data, horário, mensagem do cartão</li>
+              <li>Link de cada produto pra mandar pro cliente</li>
+            </ul>
+          </article>
+          <article class="modo">
+            <div class="modo-ilustra">
+              <div class="plaquinha-mock">
+                <span class="mesa-num">Mesa 7</span>
+                <strong>🍲 Tempero da Serra</strong>
+                <div class="qr" id="qr-plaquinha" role="img" aria-label="QR code de exemplo da mesa 7"></div>
+                <small>Aponte a câmera do celular e veja o cardápio. O pedido é com o garçom.</small>
+              </div>
+            </div>
+            <h3>Cardápio de mesa com QR code</h3>
+            <p>Pra restaurantes, bares e cafés: um QR por mesa, sem app pra baixar.</p>
+            <ul>
+              <li>Pratos com descrição, preço e o que acabou</li>
+              <li>Muda o preço no painel e o cardápio muda na hora</li>
+              <li>Plaquinhas das mesas prontas pra imprimir</li>
+              <li>Chega de cardápio de papel sujo e desatualizado</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ Para quem ══════════ -->
+    <section class="secao" aria-labelledby="titulo-nichos">
+      <div class="container">
+        <div class="secao-cabeca">
+          <span class="sobretitulo">Pra quem é</span>
+          <h2 id="titulo-nichos">Feito pro comércio que fecha a venda no WhatsApp</h2>
+        </div>
+        <ul class="nichos">
+          <li class="nicho"><span aria-hidden="true">🧀</span><div><strong>Empórios e mercearias</strong><small>Queijos, doces, cafés e cestas</small></div></li>
+          <li class="nicho"><span aria-hidden="true">💐</span><div><strong>Floriculturas</strong><small>Entrega com data e cartão</small></div></li>
+          <li class="nicho"><span aria-hidden="true">🎂</span><div><strong>Confeitarias</strong><small>Encomendas com dia marcado</small></div></li>
+          <li class="nicho"><span aria-hidden="true">🍲</span><div><strong>Restaurantes</strong><small>Cardápio de mesa e delivery</small></div></li>
+          <li class="nicho"><span aria-hidden="true">🧺</span><div><strong>Cestas e presentes</strong><small>Café da manhã, datas especiais</small></div></li>
+          <li class="nicho"><span aria-hidden="true">🥬</span><div><strong>Hortifrúti e açougue</strong><small>Pedido da semana sem erro</small></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ══════════ Recursos ══════════ -->
+    <section class="secao alt" id="recursos" aria-labelledby="titulo-recursos">
+      <div class="container">
+        <div class="secao-cabeca">
+          <span class="sobretitulo">Recursos</span>
+          <h2 id="titulo-recursos">Simples pro lojista, fácil pro cliente</h2>
+        </div>
+        <div class="recursos">
+          <article class="recurso"><div class="icone" aria-hidden="true">📱</div><h3>Painel no celular</h3><p>Instala como app (PWA) direto do navegador. Muda preço em segundos.</p></article>
+          <article class="recurso"><div class="icone" aria-hidden="true">🚫</div><h3>Esgotou? Um toque</h3><p>O produto vai pro fim da lista marcado como esgotado, sem sumir do catálogo.</p></article>
+          <article class="recurso"><div class="icone" aria-hidden="true">📝</div><h3>Perguntas do pedido</h3><p>Data da entrega, período, pra quem é, mensagem do cartão: cada loja liga as suas.</p></article>
+          <article class="recurso"><div class="icone" aria-hidden="true">🔳</div><h3>QR codes prontos</h3><p>Plaquinhas do balcão e de cada mesa, nas cores da sua loja, pra imprimir.</p></article>
+          <article class="recurso"><div class="icone" aria-hidden="true">📶</div><h3>Funciona sem internet</h3><p>O app guarda uma cópia no aparelho: abre rápido no 4G fraco e até offline.</p></article>
+          <article class="recurso"><div class="icone" aria-hidden="true">💸</div><h3>Sem comissão</h3><p>O cliente é seu e o dinheiro também. Mensalidade fixa, sem taxa por pedido.</p></article>
+          <article class="recurso"><div class="icone" aria-hidden="true">📣</div><h3>Recado no topo</h3><p>“Hoje tem feijoada”, “Encomendas de Natal até dia 20”: aparece no alto da loja.</p></article>
+          <article class="recurso"><div class="icone" aria-hidden="true">🧾</div><h3>Painel de pedidos</h3><p>Os pedidos do site numa lista, com novo, confirmado e entregue.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ Exemplos ══════════ -->
+    <section class="secao" id="exemplos" aria-labelledby="titulo-exemplos">
+      <div class="container">
+        <div class="secao-cabeca">
+          <span class="sobretitulo">Veja funcionando</span>
+          <h2 id="titulo-exemplos">Lojas de exemplo pra testar agora</h2>
+          <p>Monte uma sacola e envie: o WhatsApp abre com o pedido pronto. Mande pra você mesmo e veja como ele chega.</p>
+        </div>
+        <div class="exemplos" id="lista-exemplos"></div>
+        <div class="no-celular">
+          <div class="qr" id="qr-celular" role="img" aria-label="QR code que abre o cardápio da mesa 7 do restaurante de exemplo"></div>
+          <div>
+            <h3>Teste no celular, como o cliente</h3>
+            <p>Aponte a câmera pro QR: abre o cardápio da Mesa 7 do restaurante de exemplo, do jeitinho que o cliente vê na mesa.</p>
+            <a class="botao" href="painel/?demo=1&amp;exemplo=restaurante-tempero-da-serra">Ver o painel deste restaurante</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ Planos ══════════ -->
+    <section class="secao alt" id="planos" aria-labelledby="titulo-planos">
+      <div class="container">
+        <div class="secao-cabeca centro">
+          <span class="sobretitulo">Planos</span>
+          <h2 id="titulo-planos">Uma mensalidade, sem comissão</h2>
+          <p>A gente monta e mantém sua loja no ar. Você só divulga o link e recebe os pedidos.</p>
+        </div>
+        <div class="planos dois">
+          <article class="plano">
+            <h3>Catálogo no WhatsApp</h3>
+            <p class="para-quem">Empórios, floriculturas, confeitarias e cestas</p>
+            <p class="preco"><strong>R$ 89</strong><span>/mês</span></p>
+            <ul>
+              <li>A gente cadastra seus produtos e fotos</li>
+              <li>Link da loja e QR code do balcão</li>
+              <li>Pedido pronto no seu WhatsApp</li>
+              <li>Perguntas do pedido (data, cartão, horário)</li>
+              <li>Painel pra mudar preço, esgotar e ver os pedidos</li>
+              <li>Suporte pelo WhatsApp</li>
+            </ul>
+            <a class="botao botao-bloco" data-contato="Olá! Quero o plano Catálogo no WhatsApp do Vitrine Zap." href="https://nevestecnologia.com" target="_blank" rel="noopener">Quero esse</a>
+          </article>
+          <article class="plano destaque">
+            <span class="etiqueta">Pra restaurante</span>
+            <h3>Catálogo + Cardápio de mesa</h3>
+            <p class="para-quem">Restaurantes, bares, cafés e lanchonetes</p>
+            <p class="preco"><strong>R$ 119</strong><span>/mês</span></p>
+            <ul>
+              <li>Tudo do Catálogo no WhatsApp</li>
+              <li>Cardápio de mesa com um QR por mesa</li>
+              <li>Plaquinhas das mesas impressas</li>
+              <li>Delivery pelo WhatsApp no mesmo cardápio</li>
+              <li>Recado do dia no topo (“hoje tem feijoada”)</li>
+            </ul>
+            <a class="botao botao-primario botao-bloco" data-contato="Olá! Quero o plano Catálogo + Cardápio de mesa do Vitrine Zap." href="https://nevestecnologia.com" target="_blank" rel="noopener">Quero esse</a>
+          </article>
+        </div>
+        <p class="nota-precos">Implantação inclusa · sem fidelidade · o pagamento dos seus clientes é direto com você.</p>
+      </div>
+    </section>
+
+    <!-- ══════════ Dúvidas ══════════ -->
+    <section class="secao" id="duvidas" aria-labelledby="titulo-duvidas">
+      <div class="container">
+        <div class="secao-cabeca centro">
+          <span class="sobretitulo">Dúvidas</span>
+          <h2 id="titulo-duvidas">Perguntas frequentes</h2>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>Quem monta a loja?</summary>
+            <p>A gente. Você manda os produtos, os preços e as fotos pelo WhatsApp, e a loja fica pronta com o link, o QR
+              code e as plaquinhas. Depois, você mesmo muda preço e marca o que acabou pelo painel, no celular.</p>
+          </details>
+          <details>
+            <summary>Meu cliente precisa baixar algum aplicativo?</summary>
+            <p>Não. O catálogo abre no navegador, pelo link ou pelo QR code. Você, lojista, pode instalar o painel como
+              app (PWA) direto do navegador, sem passar por loja de aplicativos.</p>
+          </details>
+          <details>
+            <summary>Vocês cobram comissão por pedido?</summary>
+            <p>Não. É mensalidade fixa, sem fidelidade. O pagamento é combinado direto entre você e o cliente, por Pix,
+              cartão ou dinheiro: o Vitrine Zap não fica com nada do seu faturamento.</p>
+          </details>
+          <details>
+            <summary>Como pago a mensalidade?</summary>
+            <p>Por Pix ou boleto, todo mês. Se atrasar, a loja fica pausada até acertar e volta do jeitinho que estava,
+              com todos os produtos.</p>
+          </details>
+          <details>
+            <summary>Como o pedido chega pra mim?</summary>
+            <p>Numa mensagem pronta no seu WhatsApp: itens, quantidades, total, entrega ou retirada, endereço, forma de
+              pagamento e as perguntas que você ligou (data, mensagem do cartão…). Você confirma ali mesmo.</p>
+          </details>
+          <details>
+            <summary>Serve pra restaurante?</summary>
+            <p>Serve. Ligue o cardápio de mesa e imprima um QR por mesa: o cliente vê os pratos, os preços e o que acabou,
+              e faz o pedido com o garçom. O mesmo catálogo recebe pedidos de delivery pelo WhatsApp.</p>
+          </details>
+          <details>
+            <summary>E quando a internet cai?</summary>
+            <p>O Vitrine Zap é um PWA: ele guarda uma cópia no aparelho. O painel abre e salva mesmo sem internet (e sobe
+              as mudanças quando a conexão volta), e o catálogo que o cliente já abriu continua aparecendo.</p>
+          </details>
+          <details>
+            <summary>Funciona com WhatsApp Business?</summary>
+            <p>Funciona com qualquer número, normal ou Business. Não usa API paga nem cobra por mensagem: o pedido sai do
+              celular do cliente direto pra sua conversa.</p>
+          </details>
+          <details>
+            <summary>Isto é um produto de verdade?</summary>
+            <p>Esta é a versão de demonstração de um projeto acadêmico de microSaaS com PWA, e as lojas de exemplo são
+              fictícias. A ideia nasceu de um catálogo com pedido pelo WhatsApp que já funciona para um empório no
+              Sul de Minas.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ Chamada final ══════════ -->
+    <section class="cta-final">
+      <div class="container">
+        <div class="cta-caixa">
+          <h2>Bora colocar sua loja no celular do cliente?</h2>
+          <p>Mande uma mensagem e a gente monta o catálogo da sua loja. Você só divulga o link e recebe os pedidos.</p>
+          <div class="linha-botoes" style="justify-content:center">
+            <a class="botao botao-grande" data-contato href="https://nevestecnologia.com" target="_blank" rel="noopener">Quero minha loja</a>
+            <a class="botao botao-grande translucido" href="painel/?demo=1">Ver o painel por dentro</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-rodape">
+    <div class="container">
+      <div>
+        <a class="logo" href="./"><img src="icons/icone.svg" alt="" width="34" height="34"> <span>Vitrine <em>Zap</em></span></a>
+        <p style="margin-top:12px">Catálogo digital com pedido pelo WhatsApp e cardápio de mesa por QR code, pro pequeno comércio.</p>
+      </div>
+      <div>
+        <h3>Produto</h3>
+        <ul>
+          <li><a href="painel/">Entrar no painel</a></li>
+          <li><a href="painel/?demo=1">Painel de demonstração</a></li>
+          <li><a href="loja/">Lojas de exemplo</a></li>
+          <li><a href="#planos">Planos</a></li>
+          <li><a href="#duvidas">Dúvidas</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Projeto</h3>
+        <ul>
+          <li id="link-repositorio" hidden><a href="#" target="_blank" rel="noopener">Código no GitHub</a></li>
+          <li><a href="https://nevestecnologia.com" target="_blank" rel="noopener">Neves Tecnologia</a></li>
+        </ul>
+      </div>
+      <p class="letra-miuda">© <span id="ano">2026</span> Vitrine Zap, um produto Neves Tecnologia · Projeto acadêmico de demonstração
+        (microSaaS + PWA): as lojas de exemplo são fictícias.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sem internet · Vitrine Zap</title>
+  <meta name="theme-color" content="#0f7a55">
+  <meta name="color-scheme" content="light dark">
+  <!-- O service worker mostra esta página quando não tem internet e a página pedida ainda não
+       estava guardada. Ela pode aparecer em qualquer endereço do site, por isso o estilo fica aqui
+       dentro e os links são montados a partir do endereço do service worker. -->
+  <style>
+    :root { color-scheme: light dark; --fundo: #f6f4ee; --tinta: #16201b; --tinta-2: #48554f; --linha: #cfc8ba; }
+    @media (prefers-color-scheme: dark) { :root { --fundo: #0d1210; --tinta: #edf2ef; --tinta-2: #b6c2bc; --linha: #3a4741; } }
+    body { margin: 0; min-height: 100dvh; display: grid; place-items: center; padding: 24px; box-sizing: border-box;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--fundo); color: var(--tinta); text-align: center; }
+    main { max-width: 440px; }
+    .logo { width: 72px; height: 72px; margin: 0 auto 18px; }
+    h1 { margin: 0 0 10px; font-size: 1.7rem; letter-spacing: -0.02em; }
+    p { margin: 0 0 24px; color: var(--tinta-2); line-height: 1.55; }
+    .botoes { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    a, button { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px; font: inherit;
+      font-weight: 650; text-decoration: none; color: var(--tinta); border: 1px solid var(--linha); background: transparent; cursor: pointer; }
+    button { background: #0f7a55; color: #fff; border-color: transparent; }
+  </style>
+</head>
+<body>
+  <main>
+    <svg class="logo" viewBox="0 0 512 512" aria-hidden="true">
+      <rect width="512" height="512" rx="112" fill="#0f7a55"/>
+      <path d="M148 132h216a44 44 0 0 1 44 44v142a44 44 0 0 1-44 44H214l-78 56 16-56h-4a44 44 0 0 1-44-44V176a44 44 0 0 1 44-44z" fill="#fff"/>
+      <path d="M226 362v-70a30 30 0 0 1 60 0v70z" fill="#0f7a55"/>
+    </svg>
+    <h1>Sem internet por aqui</h1>
+    <p>Esta página ainda não estava guardada no aparelho. O painel e as lojas que você já abriu continuam funcionando sem internet.</p>
+    <div class="botoes">
+      <button type="button" onclick="location.reload()">Tentar de novo</button>
+      <a data-caminho="painel/" href="#">Abrir o painel</a>
+      <a data-caminho="loja/" href="#">Lojas de exemplo</a>
+    </div>
+  </main>
+  <script>
+    const sw = navigator.serviceWorker && navigator.serviceWorker.controller;
+    const raiz = new URL('./', sw ? sw.scriptURL : location.href);
+    document.querySelectorAll('[data-caminho]').forEach((a) => { a.href = new URL(a.dataset.caminho, raiz).href; });
+  </script>
+</body>
+</html>

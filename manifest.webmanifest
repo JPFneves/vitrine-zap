@@ -1,0 +1,31 @@
+{
+  "id": "./painel/",
+  "name": "Vitrine Zap · painel do lojista",
+  "short_name": "Vitrine Zap",
+  "description": "Catálogo digital com pedido pelo WhatsApp e cardápio de mesa por QR code, para empórios, floriculturas, confeitarias e restaurantes.",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "start_url": "./painel/",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "background_color": "#f6f4ee",
+  "theme_color": "#0f7a55",
+  "categories": ["business", "shopping", "productivity"],
+  "icons": [
+    { "src": "icons/icone-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icone.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ],
+  "shortcuts": [
+    { "name": "Produtos", "description": "Mudar preço e marcar o que esgotou", "url": "./painel/#produtos" },
+    { "name": "Pedidos", "description": "Ver os pedidos que chegaram", "url": "./painel/#pedidos" },
+    { "name": "QR codes das mesas", "short_name": "QR codes", "description": "Imprimir as plaquinhas", "url": "./painel/#qr" }
+  ],
+  "screenshots": [
+    { "src": "docs/telas/celular-catalogo.png", "sizes": "780x1688", "type": "image/png", "form_factor": "narrow", "label": "Catálogo da loja no celular, com a sacola" },
+    { "src": "docs/telas/celular-mesa.png", "sizes": "780x1688", "type": "image/png", "form_factor": "narrow", "label": "Cardápio de mesa aberto pelo QR code" },
+    { "src": "docs/telas/computador-painel.png", "sizes": "1280x800", "type": "image/png", "form_factor": "wide", "label": "Painel do lojista" }
+  ]
+}

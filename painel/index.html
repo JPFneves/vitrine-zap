@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Painel · Vitrine Zap</title>
+  <meta name="description" content="Painel do lojista do Vitrine Zap: produtos, preços, pedidos e QR codes das mesas, direto do celular.">
+  <meta name="theme-color" content="#0f7a55">
+  <meta name="color-scheme" content="light dark">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../icons/icone.svg" type="image/svg+xml">
+  <link rel="icon" href="../icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Vitrine Zap">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="stylesheet" href="../css/app.css">
+  <script type="module" src="../js/painel.js"></script>
+</head>
+<body class="pagina-painel">
+  <div class="faixa-demo" id="faixa-demo-painel" hidden>
+    Painel de demonstração: as mudanças ficam só neste navegador · <a href="./">entrar com a minha conta</a>
+  </div>
+  <div class="carregando" id="carregando">Abrindo o painel…</div>
+
+  <!-- ══════════ Login (só com o Supabase ligado em js/config.js) ══════════ -->
+  <section class="boas-vindas" id="entrar" hidden>
+    <div class="boas-vindas-caixa">
+      <a class="marca-app" href="../"><img src="../icons/icone.svg" alt="" width="32" height="32"> Vitrine Zap</a>
+      <h1>Entre no painel da sua loja</h1>
+      <p>Use o e-mail e a senha que a Neves Tecnologia mandou pra você. Aqui você muda preço, marca o que acabou e vê os pedidos chegando.</p>
+
+      <form id="form-entrar" class="cartao" novalidate>
+        <label class="campo">
+          <span>E-mail</span>
+          <input class="entrada" name="email" type="email" inputmode="email" autocomplete="username" placeholder="voce@email.com" maxlength="120">
+        </label>
+        <label class="campo">
+          <span>Senha</span>
+          <input class="entrada" name="senha" type="password" autocomplete="current-password" maxlength="72">
+        </label>
+        <p class="erro" id="erro-entrar" role="alert"></p>
+        <button type="submit" class="botao botao-primario botao-grande botao-bloco" style="margin-top:6px">Entrar</button>
+        <p class="ajuda" style="margin-top:14px">Esqueceu a senha ou ainda não é cliente? <a data-contato="Olá! Preciso de ajuda com o painel do Vitrine Zap." target="_blank" rel="noopener">Fale com a gente</a>.</p>
+      </form>
+
+      <div class="ou">ou</div>
+      <a class="botao botao-bloco botao-grande" href="?demo=1">Ver o painel de demonstração</a>
+      <p class="ajuda" style="margin-top:10px;text-align:center">Na demonstração dá pra mexer em tudo: as mudanças ficam só neste navegador.</p>
+    </div>
+  </section>
+
+  <!-- ══════════ Primeira vez: criar a loja ══════════ -->
+  <section class="boas-vindas" id="boas-vindas" hidden>
+    <div class="boas-vindas-caixa">
+      <a class="marca-app" href="../"><img src="../icons/icone.svg" alt="" width="32" height="32"> Vitrine Zap</a>
+      <h1>Crie o catálogo da sua loja em 2 minutos</h1>
+      <p>Quatro perguntas e você sai com o link pra divulgar e o QR code pra imprimir. Dá pra mudar tudo depois.</p>
+
+      <form id="form-nova" class="cartao" novalidate>
+        <label class="campo">
+          <span>Nome da loja</span>
+          <input class="entrada" name="nome" maxlength="60" placeholder="Ex.: Empório da Vila" autocomplete="organization">
+          <p class="erro" id="erro-nova-nome">Escreva o nome da loja.</p>
+        </label>
+        <fieldset>
+          <legend>Que tipo de comércio?</legend>
+          <div class="tipos" id="nova-tipos"></div>
+        </fieldset>
+        <label class="campo">
+          <span>WhatsApp que recebe os pedidos <span class="opcional">(dá pra pôr depois)</span></span>
+          <input class="entrada" name="whatsapp" inputmode="tel" autocomplete="tel" placeholder="(35) 99999-9999" maxlength="20">
+          <p class="ajuda">Sem número, o WhatsApp abre pra pessoa escolher o contato: bom pra testar mandando pra você mesmo.</p>
+          <p class="erro" id="erro-nova-whatsapp">Confira o número: DDD + número, ex.: (35) 99999-9999.</p>
+        </label>
+        <fieldset>
+          <legend>Cor da loja</legend>
+          <div class="cores" id="nova-cores"></div>
+        </fieldset>
+        <div class="campo">
+          <label class="interruptor">
+            <input type="checkbox" name="exemplos" checked>
+            <span class="trilho"></span>
+            <span>Começar com produtos de exemplo do tipo escolhido</span>
+          </label>
+        </div>
+        <button type="submit" class="botao botao-primario botao-grande botao-bloco">Criar minha loja</button>
+      </form>
+
+      <div class="ou">ou explore uma loja pronta</div>
+      <div class="exemplos-rapidos" id="exemplos-rapidos"></div>
+      <p class="linha-botoes" style="margin-top:20px">
+        <button type="button" class="botao botao-fantasma" id="voltar-painel" hidden>← Voltar pro painel</button>
+        <button type="button" class="botao botao-fantasma" id="sair-boas-vindas" hidden>Sair da conta</button>
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════ Painel ══════════ -->
+  <div class="app" id="app" hidden>
+    <header class="app-topo">
+      <button type="button" class="seletor-loja" id="seletor-loja" aria-haspopup="dialog">
+        <span class="seletor-emoji" id="seletor-emoji" aria-hidden="true"></span>
+        <span class="seletor-textos">
+          <span class="seletor-nome" id="seletor-nome"></span>
+          <span class="seletor-dica">Trocar de loja</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <span class="salvo" id="salvo" aria-live="polite"></span>
+      <button type="button" class="botao botao-pequeno" data-instalar hidden data-icone="instalar" aria-label="Instalar app"><span class="rotulo-botao">Instalar app</span></button>
+      <a class="botao botao-pequeno botao-primario" id="ver-loja" href="#" target="_blank" rel="noopener" data-icone="externo" aria-label="Ver loja"><span class="rotulo-botao">Ver loja</span></a>
+    </header>
+
+    <nav class="nav-app" aria-label="Seções do painel">
+      <a class="marca-app" href="../"><img src="../icons/icone.svg" alt="" width="32" height="32"> Vitrine Zap</a>
+      <a href="#inicio" data-aba="inicio" data-icone="inicio"><span>Início</span></a>
+      <a href="#pedidos" data-aba="pedidos" data-icone="pedidos"><span>Pedidos</span><span class="bolinha" id="bolinha-pedidos" hidden></span></a>
+      <a href="#produtos" data-aba="produtos" data-icone="produtos"><span>Produtos</span></a>
+      <a href="#qr" data-aba="qr" data-icone="qr"><span>QR codes</span></a>
+      <a href="#loja" data-aba="loja" data-icone="loja"><span>Loja</span></a>
+    </nav>
+
+    <main class="app-conteudo" id="conteudo">
+      <section class="aba" id="aba-inicio" aria-label="Início"></section>
+      <section class="aba" id="aba-pedidos" aria-label="Pedidos" hidden></section>
+      <section class="aba" id="aba-produtos" aria-label="Produtos" hidden></section>
+      <section class="aba" id="aba-qr" aria-label="QR codes" hidden></section>
+      <section class="aba" id="aba-loja" aria-label="Configurações da loja" hidden></section>
+    </main>
+  </div>
+
+  <!-- Editar / cadastrar produto -->
+  <dialog id="dlg-editor" class="janela" aria-labelledby="editor-titulo">
+    <form id="form-produto" novalidate>
+      <div class="janela-topo">
+        <h2 class="janela-titulo" id="editor-titulo">Novo produto</h2>
+        <button type="button" class="botao botao-fantasma botao-icone botao-pequeno" data-fechar aria-label="Fechar" data-icone="fechar"></button>
+      </div>
+      <div class="janela-corpo">
+        <div class="foto-produto campo">
+          <div id="editor-tile"></div>
+          <div>
+            <div class="linha-botoes">
+              <label class="botao botao-pequeno" data-icone="foto">Pôr foto<input type="file" accept="image/*" id="editor-foto" hidden></label>
+              <button type="button" class="botao botao-pequeno botao-fantasma" id="editor-tirar-foto" hidden>Tirar a foto</button>
+            </div>
+            <p class="ajuda" style="margin-top:6px">A foto é reduzida no próprio celular antes de salvar. Sem foto, aparece o ícone.</p>
+          </div>
+        </div>
+        <label class="campo">
+          <span>Nome</span>
+          <input class="entrada" name="nome" maxlength="80" placeholder="Ex.: Queijo minas frescal (500 g)">
+          <p class="erro" id="erro-produto-nome">Dê um nome pro produto.</p>
+        </label>
+        <div class="dois-campos">
+          <label class="campo">
+            <span>Preço</span>
+            <span class="entrada-preco"><input class="entrada" name="preco" inputmode="decimal" placeholder="0,00" maxlength="12"></span>
+            <p class="ajuda">Em branco, aparece "preço sob consulta".</p>
+            <p class="erro" id="erro-produto-preco">Escreva só o valor, ex.: 24,90.</p>
+          </label>
+          <label class="campo">
+            <span>Categoria</span>
+            <select class="entrada" name="categoria"></select>
+          </label>
+        </div>
+        <label class="campo" id="campo-nova-categoria" hidden>
+          <span>Nome da categoria nova</span>
+          <input class="entrada" name="novaCategoria" maxlength="40" placeholder="Ex.: Bebidas">
+          <p class="erro" id="erro-produto-novaCategoria">Escreva o nome da categoria.</p>
+        </label>
+        <label class="campo">
+          <span>Descrição <span class="opcional">(opcional)</span></span>
+          <textarea class="entrada" name="descricao" rows="3" maxlength="300" placeholder="O que vem, tamanho, sabor, quantas pessoas serve…"></textarea>
+        </label>
+        <div class="campo">
+          <span class="rotulo">Ícone (aparece quando não tem foto)</span>
+          <div class="emojis" id="editor-emojis" role="group" aria-label="Escolha um ícone"></div>
+        </div>
+        <div class="linha-config">
+          <div><strong>À venda</strong><small>Desligado, aparece como esgotado no fim da lista.</small></div>
+          <label class="interruptor"><input type="checkbox" name="disponivel"><span class="trilho"></span><span class="sr-only">À venda</span></label>
+        </div>
+        <div class="linha-config">
+          <div><strong>Destaque</strong><small>Aparece em "Mais pedidos", no alto do catálogo.</small></div>
+          <label class="interruptor"><input type="checkbox" name="destaque"><span class="trilho"></span><span class="sr-only">Destaque</span></label>
+        </div>
+      </div>
+      <div class="janela-rodape">
+        <div class="linha-botoes" style="justify-content:space-between">
+          <button type="button" class="botao botao-fantasma" id="editor-excluir" data-icone="lixo">Excluir</button>
+          <button type="submit" class="botao botao-primario">Salvar produto</button>
+        </div>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Categorias -->
+  <dialog id="dlg-categorias" class="janela" aria-labelledby="categorias-titulo">
+    <div class="janela-topo">
+      <h2 class="janela-titulo" id="categorias-titulo">Categorias</h2>
+      <button type="button" class="botao botao-fantasma botao-icone botao-pequeno" data-fechar aria-label="Fechar" data-icone="fechar"></button>
+    </div>
+    <div class="janela-corpo">
+      <p class="ajuda" style="margin-bottom:14px">A ordem daqui é a ordem do catálogo. Mude o nome direto na caixa.</p>
+      <ul class="lista-categorias" id="lista-categorias"></ul>
+      <form id="form-categoria" class="linha-botoes" style="margin-top:14px" novalidate>
+        <input class="entrada" name="nome" maxlength="40" placeholder="Nova categoria" style="flex:1;min-width:160px" aria-label="Nome da nova categoria">
+        <button type="submit" class="botao" data-icone="mais">Adicionar</button>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- Trocar de loja -->
+  <dialog id="dlg-lojas" class="janela janela-pequena" aria-labelledby="lojas-titulo">
+    <div class="janela-corpo">
+      <h2 class="janela-titulo" id="lojas-titulo" style="margin-bottom:14px">Suas lojas</h2>
+      <ul class="lista-lojas" id="lista-lojas"></ul>
+      <div class="linha-botoes" style="margin-top:16px">
+        <button type="button" class="botao botao-primario" id="nova-loja" data-icone="mais">Criar outra loja</button>
+        <button type="button" class="botao botao-fantasma" data-fechar>Fechar</button>
+      </div>
+    </div>
+  </dialog>
+
+  <input type="file" id="importar-arquivo" accept="application/json,.json" hidden>
+  <div class="impressao" id="impressao"></div>
+</body>
+</html>

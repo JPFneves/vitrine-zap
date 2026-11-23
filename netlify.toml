@@ -1,0 +1,6 @@
+# Netlify: o site é estático, sem build. Arraste a pasta em app.netlify.com/drop
+# ou ligue o repositório do GitHub com "Publish directory" = . (a raiz).
+# Os cabeçalhos HTTP ficam no arquivo _headers.
+
+[build]
+  publish = "."

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Catálogo · Vitrine Zap</title>
+  <meta name="description" content="Catálogo digital: escolha os produtos, monte a sacola e envie o pedido pelo WhatsApp.">
+  <meta name="theme-color" content="#0f7a55">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="../icons/icone.svg" type="image/svg+xml">
+  <link rel="icon" href="../icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="../css/app.css">
+  <script type="module" src="../js/loja.js"></script>
+</head>
+<body class="pagina-loja">
+  <a class="pular-conteudo" href="#conteudo">Pular para os produtos</a>
+
+  <div id="raiz"><div class="carregando">Abrindo o catálogo…</div></div>
+
+  <!-- Detalhe do produto -->
+  <dialog id="dlg-produto" class="janela" aria-labelledby="produto-nome">
+    <div class="janela-topo">
+      <span class="etiqueta" id="produto-categoria"></span>
+      <button type="button" class="botao botao-fantasma botao-icone botao-pequeno" data-fechar aria-label="Fechar" data-icone="fechar"></button>
+    </div>
+    <div class="janela-corpo">
+      <div id="produto-tile"></div>
+      <h2 class="detalhe-nome" id="produto-nome"></h2>
+      <p class="detalhe-preco" id="produto-preco"></p>
+      <p class="detalhe-desc" id="produto-desc"></p>
+      <button type="button" class="botao botao-pequeno" id="produto-compartilhar" data-icone="compartilhar">Mandar este produto pra alguém</button>
+    </div>
+    <div class="janela-rodape" id="produto-rodape"></div>
+  </dialog>
+
+  <!-- Sacola e formulário do pedido -->
+  <dialog id="dlg-sacola" class="janela" aria-labelledby="sacola-titulo">
+    <div class="janela-topo">
+      <h2 class="janela-titulo" id="sacola-titulo">Sua sacola</h2>
+      <button type="button" class="botao botao-fantasma botao-icone botao-pequeno" data-fechar aria-label="Fechar" data-icone="fechar"></button>
+    </div>
+    <div class="janela-corpo">
+      <div id="sacola-pedido">
+        <p class="aviso-demo-sacola" id="aviso-demo-sacola" hidden>
+          <strong>Loja de exemplo:</strong> o WhatsApp vai abrir pra você escolher o contato.
+          Mande pra você mesmo e veja como o pedido chega pro lojista.
+        </p>
+        <ul class="sacola-itens" id="sacola-itens"></ul>
+        <div class="resumo-valores" id="sacola-resumo"></div>
+
+        <form id="form-pedido" novalidate>
+          <div class="secao-form">
+            <h3>Pra finalizar</h3>
+            <label class="campo">
+              <span>Seu nome</span>
+              <input class="entrada" name="nome" autocomplete="name" placeholder="Como a loja pode te chamar?" maxlength="80">
+              <p class="erro" id="erro-nome">Escreva seu nome.</p>
+            </label>
+
+            <fieldset id="campo-modo">
+              <legend>Como você quer receber?</legend>
+              <div class="opcoes-cartao duas" id="opcoes-modo"></div>
+              <p class="erro" id="erro-modo">Escolha entrega ou retirada.</p>
+            </fieldset>
+
+            <label class="campo" id="campo-endereco" hidden>
+              <span>Endereço de entrega</span>
+              <textarea class="entrada" name="endereco" rows="2" autocomplete="street-address" maxlength="300"
+                placeholder="Rua, número, bairro e um ponto de referência"></textarea>
+              <p class="erro" id="erro-endereco">Escreva o endereço da entrega.</p>
+            </label>
+
+            <div id="campos-perguntas"></div>
+
+            <fieldset id="campo-pagamento">
+              <legend>Forma de pagamento</legend>
+              <div class="chips" id="opcoes-pagamento"></div>
+              <p class="erro" id="erro-pagamento">Escolha como vai pagar.</p>
+            </fieldset>
+
+            <label class="campo">
+              <span>Observação <span class="opcional">(opcional)</span></span>
+              <textarea class="entrada" name="obs" rows="2" maxlength="300"
+                placeholder="Ex.: troco pra R$ 50, sem cebola, entregar na portaria"></textarea>
+            </label>
+          </div>
+        </form>
+      </div>
+
+      <div class="enviado" id="sacola-enviado" hidden>
+        <div class="enviado-icone" aria-hidden="true">✓</div>
+        <h3>Seu pedido foi pro WhatsApp</h3>
+        <p>Agora é só tocar em <strong>enviar</strong> na conversa. A loja confirma o pedido e o pagamento por lá.</p>
+        <a class="botao" id="link-reabrir" href="#" target="_blank" rel="noopener">Abrir o WhatsApp de novo</a>
+      </div>
+    </div>
+    <div class="janela-rodape">
+      <div id="rodape-pedido">
+        <button type="submit" form="form-pedido" class="botao botao-zap botao-grande botao-bloco" data-icone="conversa">Enviar pedido pelo WhatsApp</button>
+      </div>
+      <div id="rodape-enviado" hidden>
+        <button type="button" class="botao botao-primario botao-grande botao-bloco" id="botao-novo-pedido">Fazer outro pedido</button>
+      </div>
+    </div>
+  </dialog>
+</body>
+</html>

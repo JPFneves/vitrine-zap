@@ -1,0 +1,6 @@
+# Texto sempre com quebra de linha LF no repositório (o Windows usa CRLF)
+* text=auto eol=lf
+
+# Imagens: binário, sem conversão
+*.png binary
+*.jpg binary
